@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance;  // Singleton instance
-    public PlayerMovement playerMovement;  // Reference to PlayerMovement script
-    public Animator animator;  // Reference to Animator component
+    public static Player Instance { get; private set; }
+    private PlayerMovement playerMovement;
+    private Animator animator;
 
-    void Awake()
+    private void Awake()
     {
-        // Setup Singleton
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -21,22 +19,27 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
-        // Get reference to PlayerMovement and Animator
         playerMovement = GetComponent<PlayerMovement>();
-        animator = transform.Find("Engine/EngineEffect").GetComponent<Animator>();
+        animator = GameObject.Find("Engine/EngineEffect")?.GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        // Call Move method from PlayerMovement
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
         playerMovement.Move();
+        UpdateAnimator();
     }
 
-    void LateUpdate()
+    private void UpdateAnimator()
     {
-        // Set Animator parameter based on PlayerMovement's IsMoving
-        animator.SetBool("IsMoving", playerMovement.IsMoving());
+        bool isMoving = playerMovement.IsMoving();
+        animator.SetBool("IsMoving", isMoving);
     }
+
 }
