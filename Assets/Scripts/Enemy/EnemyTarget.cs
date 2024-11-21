@@ -36,14 +36,14 @@ public class EnemyTarget : Enemy
         // transform.position = pos;
     }
 
-    // public void TakeDamage(int damage)
-    // {
-    //     health -= damage;
-    //     if (health <= 0)
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
+    public void TakeDamage(int damage)
+    {
+         health -= damage;
+         if (health <= 0)
+         {
+             Destroy(gameObject);
+         }
+     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

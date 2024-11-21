@@ -1,51 +1,56 @@
-using UnityEngine;
-using UnityEngine.Analytics;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemyHorizontal : Enemy
 {
-    public float speed = 5f;
-    private Vector3 direction;
-    private Vector3 spawnPoint;
-
-    private SpriteRenderer spriteRenderer; // Add SpriteRenderer reference
-    private InvincibilityComponent invincibilityComponent; // Add Invincibility reference
-    private AttackComponent attackComponent; // Add AttackComponent reference
+    [SerializeField] private float speed = 5f; // Kecepatan musuh
+    private Vector2 screenBounds; // Batas layar
+    private Vector2 direction; // Arah gerakan musuh
+    private SpriteRenderer spriteRenderer; // Referensi SpriteRenderer
+    private InvincibilityComponent invincibilityComponent; // Referensi komponen invincibility
+    private AttackComponent attackComponent; // Referensi komponen serangan
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize SpriteRenderer
-        invincibilityComponent = GetComponent<InvincibilityComponent>(); // Initialize Invincibility
-        attackComponent = GetComponent<AttackComponent>(); // Initialize AttackComponent
-        Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        if (Random.value > 0.5f)
-        {
-            spawnPoint = new Vector3(-screenBounds.x + 1, Random.Range(-screenBounds.y + 1f, screenBounds.y), 0);
-            direction = Vector3.left;
-        }
-        else
-        {
-            spawnPoint = new Vector3(screenBounds.x - 1, Random.Range(-screenBounds.y + 1f, screenBounds.y), 0);
-            direction = Vector3.right;
-        }
-        transform.position = spawnPoint;
+        // Inisialisasi komponen-komponen
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        invincibilityComponent = GetComponent<InvincibilityComponent>();
+        attackComponent = GetComponent<AttackComponent>();
+
+        // Tentukan batas layar
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        Respawn(); // Tentukan posisi awal musuh
     }
 
     void Update()
     {
-        // Move the enemy
+        // Gerakkan musuh
         transform.Translate(direction * speed * Time.deltaTime);
 
-        // Check if the enemy is off the screen and reverse direction
-        Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        // Jika musuh keluar dari batas layar, lakukan respawn
+        if (transform.position.x < -screenBounds.x - 1 || transform.position.x > screenBounds.x + 1)
+        {
+            Respawn();
+        }
+    }
 
-        if (transform.position.x > screenBounds.x)
+    void Respawn()
+    {
+        // Tentukan arah gerakan berdasarkan posisi respawn
+        float spawnPositionX;
+        if (Random.value > 0.5f)
         {
-            direction = -direction;
+            spawnPositionX = screenBounds.x;
+            direction = Vector2.left;
         }
-        else if (transform.position.x < -screenBounds.x)
+        else
         {
-            direction = -direction;
+            spawnPositionX = -screenBounds.x;
+            direction = Vector2.right;
         }
+
+        // Tetapkan posisi baru musuh secara acak pada sumbu Y
+        transform.position = new Vector2(spawnPositionX, Random.Range(-screenBounds.y + 1f, screenBounds.y - 1f));
     }
 }

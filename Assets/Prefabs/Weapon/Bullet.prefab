@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 841314475455200227}
   - component: {fileID: 4772980598770109599}
   - component: {fileID: -6449882806836812876}
+  - component: {fileID: 8829717554123208519}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -51,7 +52,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -179,9 +180,23 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.10416666}
   m_Size: {x: 0.083333336, y: 0.12499999}
   m_Direction: 0
+--- !u!114 &8829717554123208519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126134093851528915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d56b1d0cfa40754b811cfb6ae08b464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4772980598770109599}
+  damage: 10

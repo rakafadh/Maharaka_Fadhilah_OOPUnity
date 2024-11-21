@@ -11,14 +11,28 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     private IObjectPool<Bullet> objectPool;
 
-    void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.up * bulletSpeed;
     }
 
     public void SetObjectPool(IObjectPool<Bullet> pool)
     {
         objectPool = pool;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //var hitbox = other.GetComponent<HitboxComponent>();
+        //if (hitbox != null)
+        //{
+            // Apply damage to the enemy
+           // hitbox.Damage(damage);
+        //}
+
+        objectPool.Release(this);
     }
 
     private void OnEnable()
@@ -37,18 +51,18 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        objectPool.Release(this);
-    }
-
     private void OnBecameInvisible()
     {
-        // Pastikan bullet kembali ke pool ketika tidak terlihat
+        // Add condition to check if the bullet should be released
         if (gameObject.activeSelf && objectPool != null)
         {
             objectPool.Release(this);
         }
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
-    
