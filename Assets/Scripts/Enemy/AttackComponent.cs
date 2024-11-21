@@ -37,7 +37,7 @@ public class AttackComponent : MonoBehaviour
         }
         if (collision.CompareTag("Bullet"))
         {
-            // int damage = collision.GetComponent<Bullet>().damage; // Get damage from Bullet
+            int damage = collision.GetComponent<Bullet>().damage; // Get damage from Bullet
 
             if (hitbox != null)
             {

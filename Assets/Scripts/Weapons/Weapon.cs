@@ -3,33 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon Stats")]
     [SerializeField] private float shootIntervalInSeconds = 3f;
 
+
     [Header("Bullets")]
     public Bullet bullet;
     [SerializeField] private Transform bulletSpawnPoint;
-    
+
 
     [Header("Bullet Pool")]
     private IObjectPool<Bullet> objectPool;
 
+
     private readonly bool collectionCheck = false;
     private readonly int defaultCapacity = 30;
     private readonly int maxSize = 100;
+    private float timer;
     public Transform parentTransform;
-    
 
     private void Awake()
     {
-        // Pastikan `parentTransform` sudah terisi sebelum membuat pool
-        if (parentTransform == null)
-        {
-          parentTransform = new GameObject("BulletParent").transform;
-        }
-        
         objectPool = new ObjectPool<Bullet>(CreateBullet, OnGet, OnRelease, OnDestroyBullet, collectionCheck, defaultCapacity, maxSize);
     }
 
@@ -49,9 +46,9 @@ public class Weapon : MonoBehaviour
 
     private Bullet CreateBullet()
     {
-        Bullet newBullet = Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, parentTransform);
+        Bullet newBullet = Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, transform);
         newBullet.gameObject.SetActive(false);
-        newBullet.SetObjectPool(objectPool); // Pastikan bullet mengetahui pool-nya
+        newBullet.SetObjectPool(objectPool); // Ensure the bullet knows its pool
         return newBullet;
     }
 
@@ -73,6 +70,15 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private IEnumerator DelayedRelease(Bullet bullet)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (bullet != null)
+        {
+            bullet.gameObject.SetActive(false);
+        }
+    }
+
     private void OnDestroyBullet(Bullet bullet)
     {
         if (bullet != null)
@@ -84,11 +90,11 @@ public class Weapon : MonoBehaviour
     public void Shoot()
     {
         Bullet bullet = objectPool.Get();
-        if (bullet != null)
+        if (bullet != null) 
         {
-            Debug.Log("Nembak");
-            bullet.gameObject.SetActive(true); // Aktifkan peluru saat ditembak
+            // Debug.Log("Nembak");
+            bullet.gameObject.SetActive(true);
+            // Additional logic for shooting can be added here
         }
-       
     }
 }
