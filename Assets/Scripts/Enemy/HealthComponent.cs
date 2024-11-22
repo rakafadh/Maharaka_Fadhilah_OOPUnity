@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HealthComponent : MonoBehaviour
 {
     public int maxHealth;
     private int health;
+
+
 
     void Start()
     {

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 4260487277180284403}
   m_Layer: 0
   m_Name: EnemyBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08506a9ef86b1d0459df226bb7e8cc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 700
+  maxHealth: 50
 --- !u!114 &4260487277180284403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +268,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon1
       objectReference: {fileID: 0}
+    - target: {fileID: 873443370089074976, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224016812847451032, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2790161525666289890, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.54
@@ -278,11 +286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225081547523524188, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 3225081547523524188, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.081
       objectReference: {fileID: 0}
     - target: {fileID: 3225081547523524188, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
       propertyPath: m_LocalPosition.z

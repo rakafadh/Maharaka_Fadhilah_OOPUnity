@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 5895591229098377326}
   m_Layer: 0
   m_Name: EnemyForward
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde760817f7116c449564bf5f6c781bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blinkingCount: 7
-  blinkInterval: 0.1
+  blinkingCount: 4
+  blinkInterval: 0.01
   blinkMaterial: {fileID: 2100000, guid: cb7aeb59ed8dddf4287acd1e108506f8, type: 2}
   isInvincible: 0

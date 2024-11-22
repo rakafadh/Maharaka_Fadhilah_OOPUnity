@@ -26,10 +26,10 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //var hitbox = other.GetComponent<HitboxComponent>();
-        //if (hitbox != null)
+       // if (hitbox != null)
         //{
             // Apply damage to the enemy
-           // hitbox.Damage(damage);
+           //hitbox.Damage(damage);
         //}
 
         objectPool.Release(this);
