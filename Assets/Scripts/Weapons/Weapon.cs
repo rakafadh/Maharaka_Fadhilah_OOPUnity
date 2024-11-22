@@ -9,9 +9,9 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Stats")]
     [SerializeField] private float shootIntervalInSeconds = 3f;
 
-
     [Header("Bullets")]
     public Bullet bullet;
+    
     [SerializeField] private Transform bulletSpawnPoint;
 
 
@@ -49,6 +49,8 @@ public class Weapon : MonoBehaviour
         Bullet newBullet = Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, transform);
         newBullet.gameObject.SetActive(false);
         newBullet.SetObjectPool(objectPool); // Ensure the bullet knows its pool
+
+        
         return newBullet;
     }
 
@@ -92,7 +94,7 @@ public class Weapon : MonoBehaviour
         Bullet bullet = objectPool.Get();
         if (bullet != null) 
         {
-            // Debug.Log("Nembak");
+            Debug.Log("Nembak");
             bullet.gameObject.SetActive(true);
             // Additional logic for shooting can be added here
         }

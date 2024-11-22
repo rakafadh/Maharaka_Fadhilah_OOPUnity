@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -8,25 +6,6 @@ public class AttackComponent : MonoBehaviour
     public Bullet bullet;
     public int damage;
 
-    void OnTriggerEnter(Collider other)
-    {
-
-
-        HitboxComponent hitbox = other.GetComponent<HitboxComponent>();
-        if (hitbox != null)
-        {
-            hitbox.Damage(damage);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        var invincibilityComponent = collision.gameObject.GetComponent<InvincibilityComponent>();
-        if (invincibilityComponent != null)
-        {
-            invincibilityComponent.StartInvincibility();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,11 +16,10 @@ public class AttackComponent : MonoBehaviour
         }
         if (collision.CompareTag("Bullet"))
         {
-            int damage = collision.GetComponent<Bullet>().damage; // Get damage from Bullet
 
             if (hitbox != null)
             {
-                hitbox.Damage(collision.GetComponent<Bullet>()); // Apply damage using HitboxComponent with Bullet parameter
+                hitbox.Damage(collision.GetComponent<Bullet>()); 
             }
         }
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player")

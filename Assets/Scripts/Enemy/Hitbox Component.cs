@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -26,7 +24,8 @@ public class HitboxComponent : MonoBehaviour
             {
                 health.Subtract(bullet.damage);
                 invincibilityComponent.StartInvincibility();
-                Debug.Log("Player took " + bullet.damage + " damage from bullet.");
+
+
             }
         }
     }
@@ -39,7 +38,8 @@ public class HitboxComponent : MonoBehaviour
             {
                 health.Subtract(damage);
                 invincibilityComponent.StartInvincibility();
-                Debug.Log("Player took " + damage + " damage.");
+
+
             }
         }
     }

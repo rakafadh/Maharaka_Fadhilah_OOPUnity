@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -36,10 +35,10 @@ public class InvincibilityComponent : MonoBehaviour
         for (int i = 0; i < blinkingCount; i++)
         {
             spriteRenderer.material = blinkMaterial;
-            Debug.Log("Invincible");
+
             yield return new WaitForSeconds(blinkInterval);
             spriteRenderer.material = originalMaterial;
-            Debug.Log("Vulnerable");
+
             yield return new WaitForSeconds(blinkInterval);
         }
         isInvincible = false;

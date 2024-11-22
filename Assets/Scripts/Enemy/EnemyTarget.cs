@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyTarget : Enemy
@@ -7,8 +5,6 @@ public class EnemyTarget : Enemy
     public float speed = 5f;
     private Transform player;
     private Vector3 screenBounds;
-    public int health = 3; 
-
 
     void RandomizeSpawnPoint()
     {
@@ -28,22 +24,7 @@ public class EnemyTarget : Enemy
             Vector2 direction = (player.position - transform.position).normalized;
             transform.Translate(direction * speed * Time.deltaTime);
         }
-
-        // Keep the enemy within screen bounds
-        // Vector3 pos = transform.position;
-        // pos.x = Mathf.Clamp(pos.x, -screenBounds.x, screenBounds.x);
-        // pos.y = Mathf.Clamp(pos.y, -screenBounds.y, screenBounds.y);
-        // transform.position = pos;
     }
-
-    public void TakeDamage(int damage)
-    {
-         health -= damage;
-         if (health <= 0)
-         {
-             Destroy(gameObject);
-         }
-     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -8,14 +8,12 @@ public class EnemyBoss : Enemy
     public float speed = 5f;
     public Weapon weapon; // Tambahkan properti weapon
     private Vector3 direction;
-
-
     private Vector3 spawnPoint;
     private AttackComponent attackComponent; // Tambahkan properti attackComponent
+
     void Start()
     {
         // ...existing code...
-
         attackComponent = GetComponent<AttackComponent>(); // Initialize AttackComponent
         Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         if (Random.value > 0.5f)
