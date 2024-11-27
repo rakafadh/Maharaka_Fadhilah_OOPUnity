@@ -4,12 +4,9 @@ public class Enemy : MonoBehaviour
 {
     public int Level;
 
-
     public EnemySpawner enemySpawner;
 
     public CombatManager combatManager;
-
-
 
     private void OnDestroy()
     {
