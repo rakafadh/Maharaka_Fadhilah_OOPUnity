@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 0
+  enemySpawner: {fileID: 0}
+  combatManager: {fileID: 0}
 --- !u!114 &-6569679908307121719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 0
+  enemySpawner: {fileID: 0}
+  combatManager: {fileID: 0}
   speed: 5
   weapon: {fileID: 508479523070311484, guid: 8d96ddba34ac7874aa626b76ccf53a0c, type: 3}
 --- !u!61 &8979180864881246202
