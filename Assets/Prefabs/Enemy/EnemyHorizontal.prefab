@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 0
+  enemySpawner: {fileID: 0}
+  combatManager: {fileID: 0}
 --- !u!114 &7353690188644267876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 0
+  enemySpawner: {fileID: 0}
+  combatManager: {fileID: 0}
   speed: 5
+  healthComponent: {fileID: 0}
 --- !u!61 &8996540106455483459
 BoxCollider2D:
   m_ObjectHideFlags: 0
